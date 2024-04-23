@@ -8,11 +8,6 @@ import MarvelService from "../../services/MarvelService";
 
 class RandomChar extends Component {
 
-    constructor(props) {
-        super(props);
-        this.updateChar();
-    }
-
     state = {
         char: {},
         loading: true,
@@ -20,6 +15,14 @@ class RandomChar extends Component {
     }
 
     marvelService = new MarvelService();
+
+    componentDidMount() {
+        this.updateChar();
+        //this.timerID = setInterval(this.updateChar, 8000);
+    }
+    componentWillUnmount() {
+        //clearInterval(this.timerID);
+    }
 
     onCharLoaded = (char) => {
         this.setState({
